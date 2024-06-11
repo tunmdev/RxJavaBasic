@@ -1,0 +1,21 @@
+Observable type:
+- Observable: This emits zero or N number and terminates with success or an error.
+E.g: When trying to download some data or a file on the internet and let’s say the files to be downloaded are more than one.
+Instance method: create(), just(), interval(),...
+TH sử dụng: khi dữ liệu không liên tục hoặc chỉ có 1 lượng nhỏ phát ra.
+
+
+- Flowable: This just like the Observable but the difference comes when observable is emitting huge number of values that cannot be consumed or received by the observers or observable is emitting value from 1 to 1000000 at a time and the observer can take only 200 items at a time.
+=>  where BackPressureStrategy come in handy. (buffer, drop, latest, missing)
+(backpressurse là tình trạng khi nguồn dữ liệu phát ra quá nhanh so với tốc độ xử lý, nếu dùng Observable sẽ bị lỗi tràn bộ nhớ như OutOfMemory)
+TH sử dụng:
++ khi dự đoán được nguồn dữ liệu phát ra dữ liệu nhanh hơn tốc độ xử lý, dữ liệu lớn, liên tục, hoặc có thể gây tràn bộ nhớ
+(ví dụ dữ liệu từ tệp lớn, stream mạng,...)
+
+
+- Single: This is used when the observable needs to emit only a single successful value or throw an error and we do not need onComplete() as it is for flowable and observable.
+We can use this for network calls since we normally get single request at a time.
+
+- Maybe: is similar to Single but can no emit value.
+
+- Completable: Completable does not emit any data, but rather is focused on the status of execution — whether successful or failure.
